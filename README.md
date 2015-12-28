@@ -31,7 +31,6 @@ In case of multiple sentences for the same image, each sentence needs to be spec
 
 ./results
 - results.json (an example of fake results for running demo)
-- Visit MS COCO [format](http://mscoco.org/dataset/#format) page for more details.
 
 ./pycocoevalcap: The folder where all evaluation codes are stored.
 - evals.py: The file includes COCOEavlCap class that can be used to evaluate results on COCO.
