@@ -1,7 +1,7 @@
 Microsoft COCO Caption Evaluation
 ===================
 
-Evaluation codes for MS COCO caption generation.
+Evaluation codes for MS COCO caption generation from (https://github.com/tylin/coco-caption). Unlike the COCO evaluation code, which needs inputs in the MSCOCO annotation formats, this code can conveniently accept any set of images and sentences in a JSON format and can produce metric outputs. 
 
 ## Important Note ##
 CIDEr by default (with idf parameter set to "corpus" mode) computes IDF values using the reference sentences provided. Thus, CIDEr score for a reference dataset with only 1 image will be zero. When evaluating using one (or few) images, set idf to "coco-val-df" instead, which uses IDF from the MSCOCO Vaildation Dataset for reliable results.
@@ -61,12 +61,7 @@ In case of multiple sentences for the same image, each sentence needs to be spec
 - CIDEr: [CIDEr: Consensus-based Image Description Evaluation] (http://arxiv.org/pdf/1411.5726.pdf)
 
 ## Developers ##
-- Xinlei Chen (CMU)
-- Hao Fang (University of Washington)
-- Tsung-Yi Lin (Cornell)
 - Ramakrishna Vedantam (Virgina Tech)
 
 ## Acknowledgement ##
-- David Chiang (University of Norte Dame)
-- Michael Denkowski (CMU)
-- Alexander Rush (Harvard University)
+- MSCOCO Caption Evaluation Team (Xinlei Chen (CMU), Hao Fang (University of Washington), Tsung-Yi Lin (Cornell))
