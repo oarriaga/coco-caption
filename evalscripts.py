@@ -56,5 +56,5 @@ scores = scorer.eval
 print scores
 
 # write results to output file
-with open(resultFile, 'w') as outfile:
+with open(os.path.join('results', resultFile), 'w') as outfile:
     json.dump(scores, outfile)
