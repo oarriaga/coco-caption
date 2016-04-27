@@ -11,7 +11,7 @@ from rouge.rouge import Rouge
 from cider.cider import Cider
 
 class COCOEvalCap:
-    def __init__(self, pathToData, refName, candName):
+    def __init__(self, pathToData, refName, candName, dfMode = "corpus"):
         """
         Reference file: list of dict('image_id': image_id, 'caption': caption).
         Candidate file: list of dict('image_id': image_id, 'caption': caption).
@@ -22,6 +22,7 @@ class COCOEvalCap:
         self._refName = refName
         self._candName = candName
         self._pathToData = pathToData
+        self._dfMode = dfMode
 
     def evaluate(self):
         """
@@ -37,10 +38,11 @@ class COCOEvalCap:
 
             gts = defaultdict(list)
             res = defaultdict(list)
-
+            # change of naming convention from ref to gts
             for l in ref_list:
                 gts[l['image_id']].append({"caption": l['caption']})
 
+            # change of naming convention from cand to res
             for l in cand_list:
                 res[l['image_id']].append({"caption": l['caption']})
 
@@ -64,7 +66,7 @@ class COCOEvalCap:
             (Bleu(4), ["Bleu_1", "Bleu_2", "Bleu_3", "Bleu_4"]),
             (Meteor(),"METEOR"),
             (Rouge(), "ROUGE_L"),
-            (Cider(), "CIDEr")
+            (Cider(self._dfMode), "CIDEr")
         ]
 
         # =================================================

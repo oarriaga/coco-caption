@@ -26,6 +26,7 @@ same. The code will throw an error otherwise.
 
 # demo script for running coco evaluation scripts
 import json
+import os
 from pycocoevalcap.eval import COCOEvalCap as COCOEval
 
 # load the configuration file
@@ -35,7 +36,7 @@ pathToData = config['pathToData']
 refName = config['refName']
 candName = config['candName']
 resultFile = config['resultFile']
-df_mode = config['idf']
+dfMode = config['idf']
 
 # Print the parameters
 print "Running metrics with the following settings"
@@ -43,11 +44,11 @@ print "*****************************"
 print "Reference File:%s" % (refName)
 print "Candidate File:%s" % (candName)
 print "Result File:%s" % (resultFile)
-print "IDF:%s" % (df_mode)
+print "IDF:%s" % (dfMode)
 print "*****************************"
 
 # calculate metric scores
-scorer = COCOEval(pathToData, refName, candName)
+scorer = COCOEval(pathToData, refName, candName, dfMode)
 # scores: dict of list with key = metric and value = score given to each
 # candidate
 scorer.evaluate()

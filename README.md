@@ -43,11 +43,17 @@ In case of multiple sentences for the same image, each sentence needs to be spec
 ## Instructions ##
 1. Edit the params.json file to contain path to reference and candidate json files, and the result file where the scores are stored<sup>\*</sup>. 
 
-2. Set the "idf" value in params.json to "corpus" if not evaluating on a single image/instance. Set the "idf" value to "coco-val-df" if evaluating on a single image. In this case IDF values from the MSCOCO dataset are used. If using some other corpus, get the document frequencies into a similar format as "coco-val-df", and put them in the data/ folder as a pickle file. Then set mode to the name of the document frequency file (without the '.p' extension).
+2. Set the "idf" value in params.json to "corpus" if not evaluating on a single image/instance. Set the "idf" value to "coco-val-df" if evaluating on a single image. In this case IDF values from the MSCOCO dataset are used. If using some other corpus, get the document frequencies into a similar format as "coco-val-df" (see [below](#doc_freq)), and put them in the data/ folder as a pickle file. Then set mode to the name of the document frequency file (without the '.p' extension).
 
 3. Sample json reference and candidate files are pascal50S.json and pascal_test.json
 
 4. All metric scores are stored in "scores" variable: scores['CIDEr'] -> CIDEr scores and so on
+
+<a name='doc_freq'/>
+## Document Frequency Format##
+The coco-val-df.p file in ./data contains a dictionary with the following key value pairs: 
+1. 'df': the frequencies of occurrence for n-grams, where each n-gram is represented by a tuple and is used to index into a dictionary with the values containing the document frequency
+2. 'ref_len': the number of documents in the coropus. For the case of image captioning, this will typically be the total number of reference images. For MSCOCO - VAL set this would be 40,504, for instance. 
 
 <sup>*</sup>Even when evaluating with independent candidate/references (for eg. when using "coco-val-df"), put multiple candidate and reference entries into the same json files. This is much faster than having separate candidate and reference files and calling the evaluation code separately on each candidate/reference file.
 #
