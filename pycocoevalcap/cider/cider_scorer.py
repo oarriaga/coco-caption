@@ -3,10 +3,16 @@
 # Ramakrishna Vedantam <vrama91@vt.edu>
 
 import copy
-import pickle
+import sys
+
+# Use cPickle if it is installed, as it is much faster
+if 'cPickle' in sys.modules:
+    import cPickle as pickle
+else:
+    import pickle
+
 from collections import defaultdict
 import numpy as np
-import pdb
 import math
 import os
 
