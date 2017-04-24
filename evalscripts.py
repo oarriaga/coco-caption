@@ -1,3 +1,4 @@
+from __future__ import print_function
 # coding: utf-8
 """
 Evaluation scripts for BLEU, ROUGE, CIDEr-D, and METEOR, adapted from the MSCOCO
@@ -39,13 +40,13 @@ resultFile = config['resultFile']
 dfMode = config['idf']
 
 # Print the parameters
-print "Running metrics with the following settings"
-print "*****************************"
-print "Reference File:%s" % (refName)
-print "Candidate File:%s" % (candName)
-print "Result File:%s" % (resultFile)
-print "IDF:%s" % (dfMode)
-print "*****************************"
+print("Running metrics with the following settings")
+print("*****************************")
+print("Reference File:%s" % (refName))
+print("Candidate File:%s" % (candName))
+print("Result File:%s" % (resultFile))
+print("IDF:%s" % (dfMode))
+print("*****************************")
 
 # calculate metric scores
 scorer = COCOEval(pathToData, refName, candName, dfMode)
@@ -53,8 +54,9 @@ scorer = COCOEval(pathToData, refName, candName, dfMode)
 # candidate
 scorer.evaluate()
 scores = scorer.eval
+multiple_scores = scorer.multiple_eval
+print(multiple_scores)
 
-print scores
 
 # write results to output file
 with open(os.path.join('results', resultFile), 'w') as outfile:

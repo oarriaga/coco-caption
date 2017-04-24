@@ -19,10 +19,12 @@ class COCOEvalCap:
         :params: candName: name of the file containing cnadidates
         """
         self.eval = {}
+        self.multiple_eval = {}
         self._refName = refName
         self._candName = candName
         self._pathToData = pathToData
         self._dfMode = dfMode
+        self.scores = []
 
     def evaluate(self):
         """
@@ -77,10 +79,11 @@ class COCOEvalCap:
             score, scores = scorer.compute_score(gts, res)
             if type(method) == list:
                 for sc, scs, m in zip(score, scores, method):
-                    self.setEval(sc, m)
+                    self.setEval(sc ,scs ,m)
             else:
-                self.setEval(score, method)
+                self.setEval(score ,scores , method)
 
-    def setEval(self, score, method):
+    def setEval(self, score, scores, method):
         self.eval[method] = score
+        self.multiple_eval[method] = scores
 
